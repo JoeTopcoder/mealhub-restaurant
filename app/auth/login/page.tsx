@@ -2,8 +2,9 @@
 
 import { useState, type FormEvent } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { ChefHat, Mail, Lock, Eye, EyeOff } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { Suspense } from 'react'
 
@@ -77,11 +78,9 @@ export default function LoginPage() {
       <div className="hidden lg:flex flex-col justify-between w-[420px] bg-gradient-to-br from-purple-700 via-violet-700 to-indigo-800 p-12">
         <div>
           <div className="flex items-center gap-3 mb-16">
-            <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center">
-              <ChefHat className="w-6 h-6 text-white" />
-            </div>
+            <Image src="/logo.png" alt="7Dash" width={40} height={40} className="rounded-xl flex-shrink-0" />
             <div>
-              <p className="text-xl font-extrabold text-white">MealHub</p>
+              <p className="text-xl font-extrabold text-white">7Dash</p>
               <p className="text-purple-300 text-xs">Restaurant Portal</p>
             </div>
           </div>
@@ -108,10 +107,8 @@ export default function LoginPage() {
       <div className="flex-1 flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-md">
           <div className="lg:hidden flex items-center gap-2 mb-8">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-violet-700 flex items-center justify-center">
-              <ChefHat className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-extrabold bg-gradient-to-r from-purple-700 to-violet-500 bg-clip-text text-transparent">MealHub</span>
+            <Image src="/logo.png" alt="7Dash" width={36} height={36} className="rounded-xl" />
+            <span className="text-xl font-extrabold text-gray-900">7Dash</span>
           </div>
 
           <h1 className="text-2xl font-extrabold text-gray-900 mb-1">Welcome back</h1>

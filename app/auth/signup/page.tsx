@@ -2,9 +2,10 @@
 
 import { useState, type ReactNode, type ElementType } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import {
-  ChefHat, Mail, Lock, Eye, EyeOff, User, Phone, MapPin,
+  Mail, Lock, Eye, EyeOff, User, Phone, MapPin,
   UtensilsCrossed, ShoppingBag, Store, Clock, FileText,
   Check, ChevronLeft, ChevronRight, ToggleLeft, ToggleRight,
   DollarSign,
@@ -231,11 +232,9 @@ export default function SignupPage() {
       <div className="hidden lg:flex flex-col justify-between w-80 bg-gradient-to-br from-purple-700 via-violet-700 to-indigo-800 p-10 flex-shrink-0">
         <div>
           <div className="flex items-center gap-3 mb-12">
-            <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center">
-              <ChefHat className="w-6 h-6 text-white" />
-            </div>
+            <Image src="/logo.png" alt="7Dash" width={40} height={40} className="rounded-xl flex-shrink-0" />
             <div>
-              <p className="text-xl font-extrabold text-white">MealHub</p>
+              <p className="text-xl font-extrabold text-white">7Dash</p>
               <p className="text-purple-300 text-xs">Restaurant Portal</p>
             </div>
           </div>
@@ -270,10 +269,8 @@ export default function SignupPage() {
       <div className="flex-1 flex flex-col">
         {/* Mobile header */}
         <div className="lg:hidden flex items-center gap-3 px-5 py-4 border-b border-gray-100 bg-white">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-600 to-violet-700 flex items-center justify-center">
-            <ChefHat className="w-4 h-4 text-white" />
-          </div>
-          <span className="font-extrabold text-purple-700">MealHub</span>
+          <Image src="/logo.png" alt="7Dash" width={32} height={32} className="rounded-lg flex-shrink-0" />
+          <span className="font-extrabold text-gray-900">7Dash</span>
           <span className="ml-auto text-xs text-gray-400 font-semibold">Step {step + 1} of {STEPS.length}</span>
         </div>
 
@@ -478,7 +475,7 @@ export default function SignupPage() {
               <div className="space-y-4">
                 <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-7 space-y-5">
                   {[
-                    { field: 'agreeTerms',       label: 'I agree to the MealHub Terms of Service', desc: 'You agree to comply with our platform rules and partner guidelines.' },
+                    { field: 'agreeTerms',       label: 'I agree to the 7Dash Terms of Service', desc: 'You agree to comply with our platform rules and partner guidelines.' },
                     { field: 'agreePrivacy',      label: 'I accept the Privacy Policy',             desc: 'You consent to how we collect and process restaurant and order data.' },
                     { field: 'agreeCommission',   label: 'I accept the commission rate agreement',  desc: '0% for first 14 days, then 10–15% per order. No hidden fees or contracts.' },
                   ].map(({ field, label, desc }) => (

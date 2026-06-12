@@ -134,7 +134,7 @@ export default async function LoyaltyPage() {
 
         {/* How it works */}
         <div className="bg-gradient-to-br from-purple-600 to-violet-700 rounded-3xl p-6 text-white">
-          <h2 className="font-bold mb-4">How MealHub Loyalty Works</h2>
+          <h2 className="font-bold mb-4">How 7Dash Loyalty Works</h2>
           <div className="space-y-3">
             {[
               { icon: '🎯', text: 'Customers earn 1 point per $1 spent' },

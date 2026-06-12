@@ -51,7 +51,7 @@ export default async function DashboardPage() {
             <UtensilsCrossed className="w-10 h-10 text-purple-600" />
           </div>
           <h2 className="text-xl font-extrabold text-gray-900 mb-2">Set up your restaurant</h2>
-          <p className="text-gray-500 text-sm mb-8">Register your restaurant to start receiving orders on MealHub.</p>
+          <p className="text-gray-500 text-sm mb-8">Register your restaurant to start receiving orders on 7Dash.</p>
           <Link href="/settings"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-violet-700 text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-md hover:opacity-90 transition-all">
             Get Started →

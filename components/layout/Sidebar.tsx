@@ -1,10 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   LayoutDashboard, ShoppingBag, UtensilsCrossed, BarChart3,
-  Settings, Heart, Wallet, LogOut, X, Menu, ChefHat,
+  Settings, Heart, Wallet, LogOut, X, Menu,
 } from 'lucide-react'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -64,11 +65,9 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
       {/* Logo */}
       <div className="px-4 py-5 border-b border-gray-100">
         <Link href="/dashboard" onClick={() => setOpen(false)} className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-violet-700 flex items-center justify-center shadow-md">
-            <ChefHat className="w-5 h-5 text-white" />
-          </div>
+          <Image src="/logo.png" alt="7Dash" width={36} height={36} className="rounded-xl flex-shrink-0" />
           <div>
-            <p className="text-base font-extrabold bg-gradient-to-r from-purple-700 to-violet-500 bg-clip-text text-transparent leading-tight">MealHub</p>
+            <p className="text-base font-extrabold text-gray-900 leading-tight">7Dash</p>
             <p className="text-xs text-gray-400 leading-tight">Restaurant Portal</p>
           </div>
         </Link>
@@ -118,10 +117,8 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
       {/* Mobile top bar */}
       <header className="lg:hidden sticky top-0 z-40 bg-white border-b border-gray-100 flex items-center justify-between px-4 h-14 shadow-sm">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-600 to-violet-700 flex items-center justify-center">
-            <ChefHat className="w-4 h-4 text-white" />
-          </div>
-          <span className="font-extrabold text-base bg-gradient-to-r from-purple-700 to-violet-500 bg-clip-text text-transparent">MealHub</span>
+          <Image src="/logo.png" alt="7Dash" width={32} height={32} className="rounded-lg" />
+          <span className="font-extrabold text-base text-gray-900">7Dash</span>
         </Link>
         <button onClick={() => setOpen(true)} className="p-2 rounded-xl hover:bg-gray-100">
           <Menu className="w-5 h-5 text-gray-700" />
@@ -134,7 +131,7 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
           <div className="fixed inset-0 bg-black/40 z-40 lg:hidden" onClick={() => setOpen(false)} />
           <aside className="fixed inset-y-0 left-0 w-72 bg-white z-50 lg:hidden shadow-2xl flex flex-col">
             <div className="flex items-center justify-between px-4 h-14 border-b border-gray-100">
-              <span className="font-extrabold text-base text-purple-700">MealHub</span>
+              <span className="font-extrabold text-base text-gray-900">7Dash</span>
               <button onClick={() => setOpen(false)} className="p-2 rounded-xl hover:bg-gray-100">
                 <X className="w-5 h-5" />
               </button>

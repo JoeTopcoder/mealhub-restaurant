@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {
   Percent, Store, Zap, Headphones, Shield, ArrowRight,
-  Star, Package, Users, ChefHat, CheckCircle2,
+  Star, Package, Users, CheckCircle2,
 } from 'lucide-react'
 
 export default async function LandingPage() {
@@ -22,15 +22,13 @@ export default async function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-amber-400 flex items-center justify-center">
-              <ChefHat className="w-5 h-5 text-slate-900" />
-            </div>
-            <span className="text-xl font-extrabold text-slate-900 tracking-tight">MealHub</span>
+            <Image src="/logo.png" alt="7Dash" width={36} height={36} className="rounded-xl" />
+            <span className="text-xl font-extrabold text-slate-900 tracking-tight">7Dash</span>
           </div>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-            <a href="#why"    className="hover:text-slate-900 transition-colors">Why MealHub</a>
+            <a href="#why"    className="hover:text-slate-900 transition-colors">Why 7Dash</a>
             <a href="#how"    className="hover:text-slate-900 transition-colors">How It Works</a>
             <a href="#pricing" className="hover:text-slate-900 transition-colors">Pricing</a>
             <a href="#stories" className="hover:text-slate-900 transition-colors">Success Stories</a>
@@ -73,7 +71,7 @@ export default async function LandingPage() {
                 <span className="text-amber-400">Grow Your Restaurant.</span>
               </h1>
               <p className="text-slate-500 text-lg mb-8 leading-relaxed max-w-md">
-                Join MealHub and keep more of your hard-earned revenue while we help you reach more local customers.
+                Join 7Dash and keep more of your hard-earned revenue while we help you reach more local customers.
               </p>
 
               {/* Mini benefit badges */}
@@ -156,7 +154,7 @@ export default async function LandingPage() {
               <div className="absolute bottom-12 right-6 bg-slate-900 text-white rounded-2xl p-5 w-[220px] shadow-2xl z-10">
                 <div className="text-amber-400 text-2xl font-extrabold leading-none mb-2">"</div>
                 <p className="text-xs text-slate-300 leading-relaxed mb-3">
-                  MealHub has helped us reduce fees and increase our online orders. It's a win-win!
+                  7Dash has helped us reduce fees and increase our online orders. It's a win-win!
                 </p>
                 <div className="border-t border-slate-700 pt-2.5">
                   <p className="text-xs font-bold text-amber-400">— Michael T.</p>
@@ -202,7 +200,7 @@ export default async function LandingPage() {
       <section id="how" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-2">How MealHub Works for Your Restaurant</h2>
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-2">How 7Dash Works for Your Restaurant</h2>
             <div className="w-16 h-1 bg-amber-400 rounded-full mx-auto mt-3" />
           </div>
 
@@ -216,7 +214,7 @@ export default async function LandingPage() {
                 {[
                   { icon: '📋', title: 'Get Onboarded', desc: "Fill out our quick form and we'll take care of the rest." },
                   { icon: '🏪', title: 'Go Live',       desc: 'We set up your menu, store, and start listing your restaurant.' },
-                  { icon: '🛵', title: 'Get Orders',    desc: 'Receive more orders from local customers on MealHub.' },
+                  { icon: '🛵', title: 'Get Orders',    desc: 'Receive more orders from local customers on 7Dash.' },
                   { icon: '💵', title: 'Get Paid',      desc: 'Enjoy fast payouts and keep more of your hard-earned money.' },
                 ].map(({ icon, title, desc }, i) => (
                   <div key={title} className="flex flex-col items-center text-center relative z-10">
@@ -234,7 +232,7 @@ export default async function LandingPage() {
             <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-7 lg:w-72 w-full flex-shrink-0 text-center">
               <h3 className="font-extrabold text-slate-900 text-lg mb-2 leading-snug">Ready to Grow Your Restaurant?</h3>
               <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-                Join MealHub today and start receiving more orders with lower commissions.
+                Join 7Dash today and start receiving more orders with lower commissions.
               </p>
               <Link href="/auth/signup"
                 className="flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-5 py-3.5 rounded-xl text-sm shadow transition-all w-full">
@@ -246,12 +244,12 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* ── Why MealHub ── */}
+      {/* ── Why 7Dash ── */}
       <section id="why" className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-amber-500 font-extrabold text-sm uppercase tracking-widest mb-3">Why MealHub</p>
+              <p className="text-amber-500 font-extrabold text-sm uppercase tracking-widest mb-3">Why 7Dash</p>
               <h2 className="text-4xl font-extrabold text-slate-900 leading-snug mb-6">
                 Everything you need to run a successful restaurant
               </h2>
@@ -318,7 +316,7 @@ export default async function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: 'Marcus T.',   biz: 'The Smokehouse Grill',    text: 'Since joining MealHub, our revenue is up 40%. The dashboard makes managing orders effortless.', stars: 5 },
+              { name: 'Marcus T.',   biz: 'The Smokehouse Grill',    text: 'Since joining 7Dash, our revenue is up 40%. The dashboard makes managing orders effortless.', stars: 5 },
               { name: 'Sandra L.',   biz: 'Sunrise Breakfast Co.',   text: 'The 0% trial convinced me to try it. We went live in 48 hours and had orders the same day.', stars: 5 },
               { name: 'James K.',    biz: 'Kings Jerk Chicken',      text: 'Commissions are fair, payouts are fast, and the loyalty program keeps our regulars coming back.', stars: 5 },
             ].map(({ name, biz, text, stars }) => (
@@ -373,13 +371,11 @@ export default async function LandingPage() {
       <footer className="bg-slate-950 text-slate-500 py-8" id="support">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-amber-400 flex items-center justify-center">
-              <ChefHat className="w-4 h-4 text-slate-900" />
-            </div>
-            <span className="font-extrabold text-white">MealHub</span>
+            <Image src="/logo.png" alt="7Dash" width={28} height={28} className="rounded-lg" />
+            <span className="font-extrabold text-white">7Dash</span>
             <span className="text-slate-600 text-sm">for Restaurants</span>
           </div>
-          <p className="text-xs text-slate-600">© {new Date().getFullYear()} MealHub. All rights reserved.</p>
+          <p className="text-xs text-slate-600">© {new Date().getFullYear()} 7Dash. All rights reserved.</p>
           <div className="flex gap-5 text-sm">
             <Link href="/auth/login"  className="hover:text-white transition-colors">Sign In</Link>
             <Link href="/auth/signup" className="hover:text-white transition-colors">Register</Link>

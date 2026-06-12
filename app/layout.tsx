@@ -3,8 +3,8 @@ import type { ReactNode } from 'react'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'MealHub — Restaurant Portal',
-  description: 'Manage your restaurant on MealHub',
+  title: '7Dash — Restaurant Portal',
+  description: 'Manage your restaurant on 7Dash',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
