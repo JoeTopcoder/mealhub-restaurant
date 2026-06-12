@@ -6,6 +6,7 @@ function isPublic(pathname: string) {
   if (pathname === '/') return true
   if (pathname.startsWith('/auth/')) return true
   if (pathname.startsWith('/_next') || pathname.startsWith('/favicon')) return true
+  if (/\.(jpg|jpeg|png|gif|svg|ico|webp|woff|woff2|ttf|otf|css|js|json)$/i.test(pathname)) return true
   return false
 }
 
