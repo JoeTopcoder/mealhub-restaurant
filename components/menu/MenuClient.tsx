@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { MenuItem, MenuItemSide } from '@/lib/types'
 import { createClient } from '@/lib/supabase/client'
 import {
@@ -36,7 +36,7 @@ export default function MenuClient({ initialItems, restaurantId }: { initialItem
     return acc
   }, {})
 
-  async function addItem(e: React.FormEvent) {
+  async function addItem(e: FormEvent) {
     e.preventDefault()
     setLoading('addItem')
     const supabase = createClient()

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ReactNode, type ElementType } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
@@ -357,7 +357,7 @@ export default function SignupPage() {
                   { value: 'food',    icon: UtensilsCrossed, label: 'Food Only',       desc: 'Restaurant meals & dishes' },
                   { value: 'grocery', icon: ShoppingBag,     label: 'Grocery Only',    desc: 'Supermarket & grocery items' },
                   { value: 'both',    icon: Store,           label: 'Food & Grocery',  desc: 'Both food and grocery' },
-                ] as { value: StoreType; icon: React.ElementType; label: string; desc: string }[]).map(({ value, icon: Icon, label, desc }) => (
+                ] as { value: StoreType; icon: ElementType; label: string; desc: string }[]).map(({ value, icon: Icon, label, desc }) => (
                   <button key={value} type="button" onClick={() => set('storeType', value)}
                     className={`flex flex-col items-center gap-3 p-6 rounded-3xl border-2 text-center transition-all hover:-translate-y-1 ${
                       form.storeType === value
@@ -561,9 +561,9 @@ const LABEL = 'block text-xs font-bold text-gray-500 uppercase tracking-wide mb-
 
 function Field({ label, icon, children, right }: {
   label: string
-  icon: React.ReactNode
-  children: React.ReactNode
-  right?: React.ReactNode
+  icon: ReactNode
+  children: ReactNode
+  right?: ReactNode
 }) {
   return (
     <div>

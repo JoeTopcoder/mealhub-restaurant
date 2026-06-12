@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Sidebar from '@/components/layout/Sidebar'
 
-export default async function AppLayout({ children }: { children: React.ReactNode }) {
+export default async function AppLayout({ children }: { children: ReactNode }) {
   let restaurantName: string | undefined
   let restaurantImage: string | undefined
 

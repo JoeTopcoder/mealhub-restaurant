@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { Restaurant } from '@/lib/types'
 import { createClient } from '@/lib/supabase/client'
 import { Save, ToggleLeft, ToggleRight, Clock } from 'lucide-react'
@@ -39,7 +39,7 @@ export default function SettingsClient({ restaurant }: { restaurant: Restaurant 
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState('')
 
-  async function handleSave(e: React.FormEvent) {
+  async function handleSave(e: FormEvent) {
     e.preventDefault()
     setSaving(true)
     setError('')

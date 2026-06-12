@@ -2,10 +2,10 @@
 
 import { useMemo, useState } from 'react'
 import { Order } from '@/lib/types'
-import { TrendingUp, ShoppingBag, CheckCircle2, XCircle, BarChart2 } from 'lucide-react'
+import { TrendingUp, ShoppingBag, CheckCircle2, BarChart2 } from 'lucide-react'
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, BarChart, Bar,
+  ResponsiveContainer,
 } from 'recharts'
 
 type Period = 'today' | '7d' | '30d' | 'all'

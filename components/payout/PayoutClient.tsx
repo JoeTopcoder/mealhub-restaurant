@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { PayoutRequest } from '@/lib/types'
 import { createClient } from '@/lib/supabase/client'
 import { Wallet, Building2, Send, Save, CheckCircle2, Clock, XCircle } from 'lucide-react'
@@ -29,7 +29,7 @@ export default function PayoutClient({
   const [bankSaved, setBankSaved] = useState(false)
   const [msg, setMsg] = useState('')
 
-  async function requestPayout(e: React.FormEvent) {
+  async function requestPayout(e: FormEvent) {
     e.preventDefault()
     const amount = parseFloat(requestAmount)
     if (!amount || amount <= 0 || amount > balance) {
@@ -55,7 +55,7 @@ export default function PayoutClient({
     setRequesting(false)
   }
 
-  async function saveBank(e: React.FormEvent) {
+  async function saveBank(e: FormEvent) {
     e.preventDefault()
     setSavingBank(true)
     const supabase = createClient()
