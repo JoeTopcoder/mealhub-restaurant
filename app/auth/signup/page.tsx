@@ -168,7 +168,7 @@ export default function SignupPage() {
         store_type:              form.storeType,
         is_open:                 false,
         is_verified:             false,
-        status:                  'pending_review',
+        status:                  'draft',
         onboarding_step:         7,
         operating_hours:         form.hours,
         submitted_at:            new Date().toISOString(),
