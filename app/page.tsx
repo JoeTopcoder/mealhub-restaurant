@@ -1,6 +1,10 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { ChefHat, TrendingUp, Zap, Shield, Star, BarChart3, Clock, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import {
+  Percent, Store, Zap, Headphones, Shield, ArrowRight,
+  Star, Package, Users, ChefHat, CheckCircle2,
+} from 'lucide-react'
 
 export default async function LandingPage() {
   let isLoggedIn = false
@@ -11,32 +15,44 @@ export default async function LandingPage() {
   } catch {}
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* ── Nav ── */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <div className="min-h-screen bg-white" style={{ fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif" }}>
+
+      {/* ── Navbar ── */}
+      <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+          {/* Logo */}
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-violet-700 flex items-center justify-center shadow-md">
-              <ChefHat className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl bg-amber-400 flex items-center justify-center">
+              <ChefHat className="w-5 h-5 text-slate-900" />
             </div>
-            <div>
-              <span className="text-lg font-extrabold bg-gradient-to-r from-purple-700 to-violet-500 bg-clip-text text-transparent">MealHub</span>
-              <span className="hidden sm:inline text-xs text-gray-400 ml-1.5">for Restaurants</span>
-            </div>
+            <span className="text-xl font-extrabold text-slate-900 tracking-tight">MealHub</span>
           </div>
-          <div className="flex items-center gap-2">
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+            <a href="#why"    className="hover:text-slate-900 transition-colors">Why MealHub</a>
+            <a href="#how"    className="hover:text-slate-900 transition-colors">How It Works</a>
+            <a href="#pricing" className="hover:text-slate-900 transition-colors">Pricing</a>
+            <a href="#stories" className="hover:text-slate-900 transition-colors">Success Stories</a>
+            <a href="#support" className="hover:text-slate-900 transition-colors">Support</a>
+          </div>
+
+          {/* Auth */}
+          <div className="flex items-center gap-3">
             {isLoggedIn ? (
               <Link href="/dashboard"
-                className="flex items-center gap-2 text-sm font-bold bg-gradient-to-r from-purple-600 to-violet-700 text-white px-5 py-2.5 rounded-xl shadow hover:opacity-90 transition-all">
-                Go to Dashboard <ArrowRight className="w-4 h-4" />
+                className="bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-5 py-2.5 rounded-lg text-sm transition-all shadow-sm">
+                Dashboard →
               </Link>
             ) : (
               <>
-                <Link href="/auth/login" className="text-sm font-semibold text-gray-600 hover:text-gray-900 px-4 py-2 rounded-xl hover:bg-gray-100 transition-colors">
-                  Sign In
+                <Link href="/auth/login"
+                  className="hidden sm:inline-flex border-2 border-slate-800 text-slate-800 font-bold px-4 py-2 rounded-lg text-sm hover:bg-slate-50 transition-colors">
+                  Log In
                 </Link>
-                <Link href="/auth/signup" className="text-sm font-bold bg-gradient-to-r from-purple-600 to-violet-700 text-white px-5 py-2.5 rounded-xl shadow hover:opacity-90 transition-all">
-                  Get Started Free
+                <Link href="/auth/signup"
+                  className="bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-5 py-2.5 rounded-lg text-sm transition-all shadow-sm">
+                  Get Onboarded
                 </Link>
               </>
             )}
@@ -45,205 +61,326 @@ export default async function LandingPage() {
       </nav>
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-purple-700 via-violet-700 to-indigo-800 pt-24 pb-36">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-violet-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl pointer-events-none" />
+      <section className="bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 items-center min-h-[600px]">
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 text-sm text-white font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Now accepting restaurant partners
-          </div>
+            {/* Left: content */}
+            <div className="py-16 lg:py-20 lg:pr-12">
+              <h1 className="text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.08] tracking-tight mb-5">
+                More Orders.<br />
+                Lower Commissions.<br />
+                <span className="text-amber-400">Grow Your Restaurant.</span>
+              </h1>
+              <p className="text-slate-500 text-lg mb-8 leading-relaxed max-w-md">
+                Join MealHub and keep more of your hard-earned revenue while we help you reach more local customers.
+              </p>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-6">
-            Grow your restaurant<br />
-            <span className="text-yellow-300">with MealHub.</span>
-          </h1>
-          <p className="text-purple-200 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Reach thousands of hungry customers in your area. Manage orders, menus, and earnings — all from one beautiful dashboard.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            {isLoggedIn ? (
-              <Link href="/dashboard"
-                className="flex items-center gap-2.5 bg-white text-purple-700 px-8 py-4 rounded-2xl font-extrabold text-base shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all">
-                Go to Your Dashboard
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            ) : (
-              <>
-                <Link href="/auth/signup"
-                  className="flex items-center gap-2.5 bg-white text-purple-700 px-8 py-4 rounded-2xl font-extrabold text-base shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all">
-                  Start for Free
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link href="/auth/login"
-                  className="flex items-center gap-2 text-white/80 hover:text-white text-sm font-semibold transition-colors">
-                  Already a partner? Sign in →
-                </Link>
-              </>
-            )}
-          </div>
-
-          {/* Stats row */}
-          <div className="flex flex-wrap items-center justify-center gap-8 mt-16 pt-10 border-t border-white/20">
-            {[
-              { value: '0%',    label: 'Commission for 14 days' },
-              { value: '10–15%',label: 'Then — vs 25–30% elsewhere' },
-              { value: '24h',   label: 'Payout turnaround' },
-              { value: '48h',   label: 'Go live after approval' },
-            ].map(({ value, label }) => (
-              <div key={label} className="text-center">
-                <p className="text-3xl font-extrabold text-white">{value}</p>
-                <p className="text-purple-300 text-xs mt-1 max-w-[120px] leading-snug">{label}</p>
+              {/* Mini benefit badges */}
+              <div className="grid grid-cols-2 gap-x-6 gap-y-4 mb-10">
+                {[
+                  { icon: Percent,    label: 'Lower Commissions',   sub: 'Keep More Profit' },
+                  { icon: Store,      label: 'More Local Customers', sub: 'Grow Your Business' },
+                  { icon: Zap,        label: 'Fast Payouts',        sub: 'Get Paid Quickly' },
+                  { icon: Headphones, label: 'Dedicated Support',   sub: "We're Here to Help" },
+                ].map(({ icon: Icon, label, sub }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-extrabold text-slate-800">{label}</p>
+                      <p className="text-xs text-slate-400">{sub}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              {/* CTA buttons */}
+              <div className="flex flex-wrap items-center gap-4 mb-6">
+                <Link href="/auth/signup"
+                  className="flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-7 py-3.5 rounded-xl text-sm shadow-lg hover:-translate-y-0.5 transition-all">
+                  Get Onboarded Now <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a href="#how"
+                  className="flex items-center gap-1.5 text-slate-700 font-semibold text-sm hover:text-slate-900 transition-colors">
+                  Learn More <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+
+              {/* Trust line */}
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-medium">
+                <Shield className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
+                <span>No Setup Fee</span>
+                <span className="text-slate-300">•</span>
+                <span>No Long-Term Contracts</span>
+                <span className="text-slate-300">•</span>
+                <span className="font-bold text-amber-600">0% Commission for 14 Days</span>
+              </div>
+            </div>
+
+            {/* Right: restaurant photo + floating cards */}
+            <div className="hidden lg:block relative h-[600px]">
+              {/* Photo fills the column */}
+              <div className="absolute inset-0 overflow-hidden rounded-bl-[48px]">
+                <Image
+                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&h=700&fit=crop"
+                  alt="Restaurant"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                {/* Dark overlay on left edge for text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent" />
+              </div>
+
+              {/* Floating: 0% commission card */}
+              <div className="absolute top-8 right-6 bg-slate-900 text-white rounded-2xl p-5 w-[190px] shadow-2xl z-10">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
+                    <Zap className="w-3 h-3 text-slate-900" />
+                  </div>
+                  <span className="text-amber-400 text-xs font-bold leading-tight">Limited Time Offer</span>
+                </div>
+                <p className="text-5xl font-extrabold text-amber-400 leading-none mb-1">0%</p>
+                <p className="text-sm font-semibold text-white leading-snug">
+                  Commission<br />for the First<br />
+                  <span className="text-amber-400">14 Days!</span>
+                </p>
+              </div>
+
+              {/* Curved arrow decoration */}
+              <div className="absolute top-[178px] right-[190px] text-amber-400 text-3xl rotate-12 z-10 select-none">↙</div>
+
+              {/* Floating: testimonial card */}
+              <div className="absolute bottom-12 right-6 bg-slate-900 text-white rounded-2xl p-5 w-[220px] shadow-2xl z-10">
+                <div className="text-amber-400 text-2xl font-extrabold leading-none mb-2">"</div>
+                <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                  MealHub has helped us reduce fees and increase our online orders. It's a win-win!
+                </p>
+                <div className="border-t border-slate-700 pt-2.5">
+                  <p className="text-xs font-bold text-amber-400">— Michael T.</p>
+                  <p className="text-xs text-slate-500">Restaurant Owner</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Wave */}
-        <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 60" fill="none">
-          <path d="M0 60L1440 60L1440 20C1200 55 960 5 720 20C480 35 240 5 0 20V60Z" fill="white" />
-        </svg>
+      {/* ── Social proof bar ── */}
+      <section className="bg-slate-900 py-9">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="text-center lg:text-left">
+              <p className="text-white font-extrabold text-base">Trusted by Restaurants</p>
+              <p className="text-slate-400 text-sm mt-0.5">Across the <span className="text-amber-400 font-extrabold">USA</span></p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-10">
+              {[
+                { icon: Store,   value: '500+',   label: 'Restaurants' },
+                { icon: Users,   value: '250K+',  label: 'Happy Customers' },
+                { icon: Package, value: '1M+',    label: 'Orders Delivered' },
+                { icon: Star,    value: '4.8★',   label: 'Average Rating' },
+              ].map(({ icon: Icon, value, label }) => (
+                <div key={label} className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-full border-2 border-slate-700 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-5 h-5 text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-white font-extrabold text-lg leading-tight">{value}</p>
+                    <p className="text-slate-400 text-xs">{label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ── How it works ── */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="text-purple-600 font-bold text-sm uppercase tracking-widest mb-3">Simple Process</p>
-          <h2 className="text-4xl font-extrabold text-gray-900">Go live in 3 steps</h2>
-        </div>
+      <section id="how" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-2">How MealHub Works for Your Restaurant</h2>
+            <div className="w-16 h-1 bg-amber-400 rounded-full mx-auto mt-3" />
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { step: '01', icon: '📝', title: 'Register your restaurant', desc: 'Fill in your restaurant details, menu, and delivery settings. Takes about 5 minutes.' },
-            { step: '02', icon: '✅', title: 'Get verified',             desc: "Our team reviews your application within 48 hours. We'll notify you by email once approved." },
-            { step: '03', icon: '🚀', title: 'Start receiving orders',   desc: 'Toggle your restaurant open and watch orders come in. Manage everything from your dashboard.' },
-          ].map(({ step, icon, title, desc }) => (
-            <div key={step} className="relative bg-white rounded-3xl border border-gray-100 shadow-sm p-8 hover:shadow-lg hover:-translate-y-1 transition-all">
-              <div className="absolute -top-4 left-8 bg-gradient-to-r from-purple-600 to-violet-700 text-white text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
-                Step {step}
+          <div className="flex flex-col lg:flex-row gap-10 items-start">
+            {/* 4 steps */}
+            <div className="flex-1">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative">
+                {/* Dotted connector line */}
+                <div className="hidden md:block absolute top-9 left-[12%] right-[12%] border-t-2 border-dashed border-amber-300 z-0" />
+
+                {[
+                  { icon: '📋', title: 'Get Onboarded', desc: "Fill out our quick form and we'll take care of the rest." },
+                  { icon: '🏪', title: 'Go Live',       desc: 'We set up your menu, store, and start listing your restaurant.' },
+                  { icon: '🛵', title: 'Get Orders',    desc: 'Receive more orders from local customers on MealHub.' },
+                  { icon: '💵', title: 'Get Paid',      desc: 'Enjoy fast payouts and keep more of your hard-earned money.' },
+                ].map(({ icon, title, desc }, i) => (
+                  <div key={title} className="flex flex-col items-center text-center relative z-10">
+                    <div className="w-[72px] h-[72px] rounded-full bg-amber-50 border-2 border-amber-200 flex items-center justify-center text-3xl mb-4 shadow-sm">
+                      {icon}
+                    </div>
+                    <p className="text-sm font-extrabold text-slate-900 mb-1.5">{i + 1}. {title}</p>
+                    <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
+                  </div>
+                ))}
               </div>
-              <div className="text-4xl mb-4 mt-2">{icon}</div>
-              <h3 className="text-lg font-extrabold text-gray-900 mb-2">{title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
             </div>
-          ))}
+
+            {/* CTA card */}
+            <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-7 lg:w-72 w-full flex-shrink-0 text-center">
+              <h3 className="font-extrabold text-slate-900 text-lg mb-2 leading-snug">Ready to Grow Your Restaurant?</h3>
+              <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+                Join MealHub today and start receiving more orders with lower commissions.
+              </p>
+              <Link href="/auth/signup"
+                className="flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-5 py-3.5 rounded-xl text-sm shadow transition-all w-full">
+                Get Onboarded Now <ArrowRight className="w-4 h-4" />
+              </Link>
+              <p className="text-xs text-slate-400 mt-3 font-medium">It only takes 2 minutes!</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── Features ── */}
-      <section className="py-24 bg-gray-50">
+      {/* ── Why MealHub ── */}
+      <section id="why" className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-purple-600 font-bold text-sm uppercase tracking-widest mb-3">Everything you need</p>
-            <h2 className="text-4xl font-extrabold text-gray-900">Built for restaurant owners</h2>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-amber-500 font-extrabold text-sm uppercase tracking-widest mb-3">Why MealHub</p>
+              <h2 className="text-4xl font-extrabold text-slate-900 leading-snug mb-6">
+                Everything you need to run a successful restaurant
+              </h2>
+              <p className="text-slate-500 text-base leading-relaxed mb-8">
+                We give you the tools, customers, and support to grow your restaurant — without the ridiculous fees that eat into your profits.
+              </p>
+              <div className="space-y-4">
+                {[
+                  'Real-time order dashboard — accept, track & manage',
+                  'Full menu management with discounts & availability',
+                  'Revenue analytics & top item reports',
+                  'Built-in customer loyalty rewards program',
+                  'Fast payouts — request anytime, receive in 24–48h',
+                  'Dedicated onboarding & support team',
+                ].map(item => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-400 flex-shrink-0" />
+                    <span className="text-slate-700 text-sm font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Pricing card */}
+            <div id="pricing">
+              <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                <div className="bg-slate-900 p-7 text-center">
+                  <p className="text-amber-400 font-bold text-sm mb-1">Simple, transparent pricing</p>
+                  <p className="text-6xl font-extrabold text-amber-400">0%</p>
+                  <p className="text-white text-lg font-bold mt-1">Commission for 14 days</p>
+                  <p className="text-slate-400 text-sm mt-1">No credit card required</p>
+                </div>
+                <div className="p-7 space-y-3">
+                  {[
+                    ['After trial', '10–15% per order (vs 25–30% elsewhere)'],
+                    ['Setup fee', '$0 — completely free to join'],
+                    ['Contract', 'None — cancel anytime'],
+                    ['Payouts', '24–48h bank transfer'],
+                    ['Support', 'Dedicated partner support'],
+                  ].map(([label, value]) => (
+                    <div key={label} className="flex items-center justify-between text-sm pb-3 border-b border-gray-100 last:border-0">
+                      <span className="text-slate-500 font-medium">{label}</span>
+                      <span className="font-extrabold text-slate-900">{value}</span>
+                    </div>
+                  ))}
+                  <Link href="/auth/signup"
+                    className="mt-4 flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-5 py-3.5 rounded-xl text-sm shadow w-full transition-all">
+                    Start Free Today <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Success stories ── */}
+      <section id="stories" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-amber-500 font-extrabold text-sm uppercase tracking-widest mb-3">Success Stories</p>
+            <h2 className="text-4xl font-extrabold text-slate-900">What our partners say</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: Zap,        color: 'text-yellow-600', bg: 'bg-yellow-50', title: 'Real-time Orders',   desc: 'New orders appear instantly. Accept, prepare, and mark ready with one tap.' },
-              { icon: BarChart3,  color: 'text-blue-600',   bg: 'bg-blue-50',   title: 'Revenue Analytics', desc: 'Daily, weekly, and monthly revenue charts. See your top-selling items at a glance.' },
-              { icon: TrendingUp, color: 'text-green-600',  bg: 'bg-green-50',  title: 'Menu Management',   desc: 'Add items, set prices, apply discounts, and toggle availability in seconds.' },
-              { icon: Star,       color: 'text-purple-600', bg: 'bg-purple-50', title: 'Loyalty Program',    desc: 'Customers earn points automatically. Watch repeat orders grow every month.' },
-              { icon: Shield,     color: 'text-red-500',    bg: 'bg-red-50',    title: 'Fast Payouts',      desc: 'Request your earnings anytime. Bank transfers processed within 24–48 hours.' },
-              { icon: Clock,      color: 'text-orange-600', bg: 'bg-orange-50', title: 'Operating Hours',    desc: 'Set your schedule per day. Customers see your real-time open/closed status.' },
-            ].map(({ icon: Icon, color, bg, title, desc }) => (
-              <div key={title} className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition-all">
-                <div className={`w-11 h-11 rounded-2xl ${bg} flex items-center justify-center mb-4`}>
-                  <Icon className={`w-5 h-5 ${color}`} />
+              { name: 'Marcus T.',   biz: 'The Smokehouse Grill',    text: 'Since joining MealHub, our revenue is up 40%. The dashboard makes managing orders effortless.', stars: 5 },
+              { name: 'Sandra L.',   biz: 'Sunrise Breakfast Co.',   text: 'The 0% trial convinced me to try it. We went live in 48 hours and had orders the same day.', stars: 5 },
+              { name: 'James K.',    biz: 'Kings Jerk Chicken',      text: 'Commissions are fair, payouts are fast, and the loyalty program keeps our regulars coming back.', stars: 5 },
+            ].map(({ name, biz, text, stars }) => (
+              <div key={name} className="bg-slate-50 rounded-3xl p-6 border border-gray-100">
+                <div className="flex gap-0.5 mb-4">
+                  {Array.from({ length: stars }).map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  ))}
                 </div>
-                <h3 className="text-base font-extrabold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="text-slate-700 text-sm leading-relaxed mb-5">"{text}"</p>
+                <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
+                  <div className="w-9 h-9 rounded-full bg-amber-400 flex items-center justify-center text-slate-900 font-extrabold text-sm flex-shrink-0">
+                    {name[0]}
+                  </div>
+                  <div>
+                    <p className="text-sm font-extrabold text-slate-900">{name}</p>
+                    <p className="text-xs text-slate-500">{biz}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Comparison ── */}
-      <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-4">Why partner with us?</h2>
-          <p className="text-gray-500 text-lg">We keep more money in your pocket.</p>
-        </div>
-
-        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
-          <div className="grid grid-cols-3 bg-gray-50 border-b border-gray-100 text-sm font-bold text-gray-500 uppercase tracking-wide">
-            <div className="px-6 py-4">Feature</div>
-            <div className="px-6 py-4 text-purple-700 text-center">MealHub ✓</div>
-            <div className="px-6 py-4 text-center">Competitors</div>
-          </div>
-          {[
-            ['Commission rate',    '10–15%',      '25–30%'],
-            ['Free trial',         '14 days',     'None'],
-            ['Payout speed',       '24–48 hours', '7–14 days'],
-            ['Contracts',          'None',        'Required'],
-            ['Setup fee',          '$0',          '$100–500'],
-            ['Loyalty program',    'Built-in',    'Extra cost'],
-            ['Customer ownership', 'Yours',       'Platform owns'],
-          ].map(([feature, ours, theirs]) => (
-            <div key={feature} className="grid grid-cols-3 border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors">
-              <div className="px-6 py-4 text-sm font-semibold text-gray-700">{feature}</div>
-              <div className="px-6 py-4 text-sm font-bold text-green-600 text-center">{ours}</div>
-              <div className="px-6 py-4 text-sm text-gray-400 text-center">{theirs}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Testimonial ── */}
-      <section className="py-16 bg-gradient-to-br from-purple-50 to-violet-50">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <div className="text-5xl mb-6">⭐⭐⭐⭐⭐</div>
-          <blockquote className="text-2xl font-bold text-gray-900 leading-snug mb-6">
-            &ldquo;Since joining MealHub, our monthly revenue has increased by 40%. The dashboard makes managing orders so much easier.&rdquo;
-          </blockquote>
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-purple-400 to-violet-500 flex items-center justify-center text-white font-extrabold">M</div>
-            <div className="text-left">
-              <p className="text-sm font-bold text-gray-900">Marcus Johnson</p>
-              <p className="text-xs text-gray-500">Owner, The Smokehouse Grill</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="py-24 bg-gradient-to-br from-purple-700 via-violet-700 to-indigo-800">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
-            Ready to grow your restaurant?
+      {/* ── Final CTA ── */}
+      <section className="py-20 bg-slate-900">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <p className="text-amber-400 font-extrabold text-sm uppercase tracking-widest mb-4">Limited Time</p>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
+            Start with 0% commission<br />for your first 14 days
           </h2>
-          <p className="text-purple-200 text-lg mb-10">Join today. 0% commission for your first 14 days. No credit card required.</p>
-          {isLoggedIn ? (
-            <Link href="/dashboard"
-              className="inline-flex items-center gap-3 bg-white text-purple-700 px-10 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:shadow-purple-900/40 hover:-translate-y-1 transition-all">
-              Go to Your Dashboard
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          ) : (
+          <p className="text-slate-400 text-lg mb-10 max-w-xl mx-auto">
+            No contracts. No setup fees. Just more orders, more revenue, and a platform that works for you.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/auth/signup"
-              className="inline-flex items-center gap-3 bg-white text-purple-700 px-10 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:shadow-purple-900/40 hover:-translate-y-1 transition-all">
-              Register Your Restaurant
-              <ArrowRight className="w-5 h-5" />
+              className="flex items-center gap-2.5 bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-9 py-4 rounded-2xl text-base shadow-xl hover:-translate-y-0.5 transition-all">
+              Get Onboarded Now <ArrowRight className="w-5 h-5" />
             </Link>
-          )}
+            {!isLoggedIn && (
+              <Link href="/auth/login" className="text-slate-400 hover:text-white text-sm font-semibold transition-colors">
+                Already a partner? Sign in →
+              </Link>
+            )}
+          </div>
+          <p className="text-slate-600 text-xs mt-6">No credit card required · Cancel anytime · Go live in 48 hours</p>
         </div>
       </section>
 
       {/* ── Footer ── */}
-      <footer className="bg-gray-900 text-gray-400 py-10">
+      <footer className="bg-slate-950 text-slate-500 py-8" id="support">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center">
-              <ChefHat className="w-4 h-4 text-white" />
+            <div className="w-7 h-7 rounded-lg bg-amber-400 flex items-center justify-center">
+              <ChefHat className="w-4 h-4 text-slate-900" />
             </div>
             <span className="font-extrabold text-white">MealHub</span>
-            <span className="text-gray-600 text-sm">Restaurant Portal</span>
+            <span className="text-slate-600 text-sm">for Restaurants</span>
           </div>
-          <p className="text-xs text-gray-600">© {new Date().getFullYear()} MealHub. All rights reserved.</p>
-          <div className="flex gap-4 text-sm">
+          <p className="text-xs text-slate-600">© {new Date().getFullYear()} MealHub. All rights reserved.</p>
+          <div className="flex gap-5 text-sm">
             <Link href="/auth/login"  className="hover:text-white transition-colors">Sign In</Link>
             <Link href="/auth/signup" className="hover:text-white transition-colors">Register</Link>
           </div>
