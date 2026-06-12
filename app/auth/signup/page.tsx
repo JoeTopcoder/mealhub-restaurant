@@ -136,7 +136,7 @@ export default function SignupPage() {
     const { data, error: authErr } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
-      options: { data: { name: form.ownerName, role: 'restaurant_owner' } },
+      options: { data: { name: form.ownerName, role: 'restaurant' } },
     })
 
     if (authErr) { setError(authErr.message); setLoading(false); return }
@@ -145,32 +145,37 @@ export default function SignupPage() {
     const userId = data.user.id
 
     // User profile
-    await supabase.from('users').upsert({
+    const { error: userErr } = await supabase.from('users').upsert({
       id: userId,
       email: form.email,
       name: form.ownerName,
-      role: 'restaurant_owner',
+      role: 'restaurant',
     }, { onConflict: 'id' })
 
+    if (userErr) { setError(userErr.message); setLoading(false); return }
+
     // Restaurant record
-    const { data: restaurant } = await supabase.from('restaurants').insert({
-      owner_id:               userId,
-      name:                   form.restaurantName,
-      description:            form.description || null,
-      cuisine_type:           form.cuisineType,
-      phone:                  form.phone || null,
-      address:                form.address || null,
-      delivery_fee:           parseFloat(form.deliveryFee) || 0,
+    const { data: restaurant, error: restErr } = await supabase.from('restaurants').insert({
+      owner_id:                userId,
+      name:                    form.restaurantName,
+      description:             form.description || null,
+      cuisine_type:            form.cuisineType,
+      phone:                   form.phone || null,
+      address:                 form.address || null,
+      delivery_fee:            parseFloat(form.deliveryFee) || 0,
       estimated_delivery_time: parseInt(form.estimatedTime) || 30,
-      store_type:             form.storeType,
-      is_open:                false,
-      is_verified:            false,
-      status:                 'draft',
-      onboarding_step:        7,
-      operating_hours:        form.hours,
+      store_type:              form.storeType,
+      is_open:                 false,
+      is_verified:             false,
+      status:                  'pending_review',
+      onboarding_step:         7,
+      operating_hours:         form.hours,
+      submitted_at:            new Date().toISOString(),
     }).select('id').single()
 
-    // Business documents
+    if (restErr) { setError(restErr.message); setLoading(false); return }
+
+    // Business documents (best-effort — don't block signup if this fails)
     if (restaurant?.id) {
       const docs = [
         { type: 'business_registration', number: form.businessRegNumber },
@@ -181,8 +186,8 @@ export default function SignupPage() {
       if (docs.length > 0) {
         await supabase.from('restaurant_documents').insert(
           docs.map(d => ({
-            restaurant_id: restaurant.id,
-            document_type: d.type,
+            restaurant_id:   restaurant.id,
+            document_type:   d.type,
             document_number: d.number,
           }))
         )
