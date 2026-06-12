@@ -22,7 +22,7 @@ export default async function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2.5">
-            <Image src="/logo.jpg" alt="7Dash" width={36} height={36} className="rounded-xl" />
+            <img src="/logo.jpg" alt="7Dash" className="rounded-xl" style={{ width: 36, height: 36 }} />
             <span className="text-xl font-extrabold text-slate-900 tracking-tight">7Dash</span>
           </div>
 
@@ -371,7 +371,7 @@ export default async function LandingPage() {
       <footer className="bg-slate-950 text-slate-500 py-8" id="support">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Image src="/logo.jpg" alt="7Dash" width={28} height={28} className="rounded-lg" />
+            <img src="/logo.jpg" alt="7Dash" className="rounded-lg" style={{ width: 28, height: 28 }} />
             <span className="font-extrabold text-white">7Dash</span>
             <span className="text-slate-600 text-sm">for Restaurants</span>
           </div>
