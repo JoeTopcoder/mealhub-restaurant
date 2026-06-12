@@ -1,15 +1,18 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
-const PUBLIC = ['/auth/login', '/auth/signup', '/auth/callback']
 const PROJECT_REF = 'yharweliruemjexmuuxn'
+
+function isPublic(pathname: string) {
+  if (pathname === '/') return true
+  if (pathname.startsWith('/auth/')) return true
+  if (pathname.startsWith('/_next') || pathname.startsWith('/favicon')) return true
+  return false
+}
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Allow public routes
-  if (PUBLIC.some(p => pathname.startsWith(p))) return NextResponse.next()
-  // Allow static assets
-  if (pathname.startsWith('/_next') || pathname.startsWith('/favicon')) return NextResponse.next()
+  if (isPublic(pathname)) return NextResponse.next()
 
   const tokenCookie =
     request.cookies.get(`sb-${PROJECT_REF}-auth-token`) ||
