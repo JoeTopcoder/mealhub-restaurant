@@ -77,7 +77,9 @@ export default function LoginPage() {
       <div className="hidden lg:flex flex-col justify-between w-[420px] bg-gradient-to-br from-purple-700 via-violet-700 to-indigo-800 p-12">
         <div>
           <div className="flex items-center gap-3 mb-16">
-            <img src="/logo.jpg" alt="7Dash" className="rounded-xl flex-shrink-0" style={{ width: 40, height: 40 }} />
+            <div className="rounded-xl bg-black overflow-hidden flex-shrink-0" style={{ width: 48, height: 48 }}>
+              <img src="/logo.jpg" alt="7Dash" className="w-full h-full object-cover" />
+            </div>
             <div>
               <p className="text-xl font-extrabold text-white">7Dash</p>
               <p className="text-purple-300 text-xs">Restaurant Portal</p>
@@ -106,7 +108,9 @@ export default function LoginPage() {
       <div className="flex-1 flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-md">
           <div className="lg:hidden flex items-center gap-2 mb-8">
-            <img src="/logo.jpg" alt="7Dash" className="rounded-xl" style={{ width: 36, height: 36 }} />
+            <div className="rounded-xl bg-black overflow-hidden flex-shrink-0" style={{ width: 40, height: 40 }}>
+              <img src="/logo.jpg" alt="7Dash" className="w-full h-full object-cover" />
+            </div>
             <span className="text-xl font-extrabold text-gray-900">7Dash</span>
           </div>
 

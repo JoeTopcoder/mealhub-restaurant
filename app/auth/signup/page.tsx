@@ -231,7 +231,9 @@ export default function SignupPage() {
       <div className="hidden lg:flex flex-col justify-between w-80 bg-gradient-to-br from-purple-700 via-violet-700 to-indigo-800 p-10 flex-shrink-0">
         <div>
           <div className="flex items-center gap-3 mb-12">
-            <img src="/logo.jpg" alt="7Dash" className="rounded-xl flex-shrink-0" style={{ width: 40, height: 40 }} />
+            <div className="rounded-xl bg-black overflow-hidden flex-shrink-0" style={{ width: 48, height: 48 }}>
+              <img src="/logo.jpg" alt="7Dash" className="w-full h-full object-cover" />
+            </div>
             <div>
               <p className="text-xl font-extrabold text-white">7Dash</p>
               <p className="text-purple-300 text-xs">Restaurant Portal</p>
@@ -268,7 +270,9 @@ export default function SignupPage() {
       <div className="flex-1 flex flex-col">
         {/* Mobile header */}
         <div className="lg:hidden flex items-center gap-3 px-5 py-4 border-b border-gray-100 bg-white">
-          <img src="/logo.jpg" alt="7Dash" className="rounded-lg flex-shrink-0" style={{ width: 32, height: 32 }} />
+          <div className="rounded-lg bg-black overflow-hidden flex-shrink-0" style={{ width: 36, height: 36 }}>
+            <img src="/logo.jpg" alt="7Dash" className="w-full h-full object-cover" />
+          </div>
           <span className="font-extrabold text-gray-900">7Dash</span>
           <span className="ml-auto text-xs text-gray-400 font-semibold">Step {step + 1} of {STEPS.length}</span>
         </div>
