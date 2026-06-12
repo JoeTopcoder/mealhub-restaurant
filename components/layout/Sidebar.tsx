@@ -65,7 +65,7 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
       {/* Logo */}
       <div className="px-4 py-5 border-b border-gray-100">
         <Link href="/dashboard" onClick={() => setOpen(false)} className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="7Dash" width={36} height={36} className="rounded-xl flex-shrink-0" />
+          <Image src="/logo.jpg" alt="7Dash" width={36} height={36} className="rounded-xl flex-shrink-0" />
           <div>
             <p className="text-base font-extrabold text-gray-900 leading-tight">7Dash</p>
             <p className="text-xs text-gray-400 leading-tight">Restaurant Portal</p>
@@ -117,7 +117,7 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
       {/* Mobile top bar */}
       <header className="lg:hidden sticky top-0 z-40 bg-white border-b border-gray-100 flex items-center justify-between px-4 h-14 shadow-sm">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="7Dash" width={32} height={32} className="rounded-lg" />
+          <Image src="/logo.jpg" alt="7Dash" width={32} height={32} className="rounded-lg" />
           <span className="font-extrabold text-base text-gray-900">7Dash</span>
         </Link>
         <button onClick={() => setOpen(true)} className="p-2 rounded-xl hover:bg-gray-100">
