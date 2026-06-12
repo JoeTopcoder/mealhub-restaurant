@@ -152,9 +152,9 @@ export default async function LandingPage() {
 
               {/* Floating: testimonial card */}
               <div className="absolute bottom-12 right-6 bg-slate-900 text-white rounded-2xl p-5 w-[220px] shadow-2xl z-10">
-                <div className="text-amber-400 text-2xl font-extrabold leading-none mb-2">"</div>
+                <div className="text-amber-400 text-2xl font-extrabold leading-none mb-2">&ldquo;</div>
                 <p className="text-xs text-slate-300 leading-relaxed mb-3">
-                  7Dash has helped us reduce fees and increase our online orders. It's a win-win!
+                  7Dash has helped us reduce fees and increase our online orders. It&apos;s a win-win!
                 </p>
                 <div className="border-t border-slate-700 pt-2.5">
                   <p className="text-xs font-bold text-amber-400">— Michael T.</p>
@@ -326,7 +326,7 @@ export default async function LandingPage() {
                     <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-slate-700 text-sm leading-relaxed mb-5">"{text}"</p>
+                <p className="text-slate-700 text-sm leading-relaxed mb-5">&ldquo;{text}&rdquo;</p>
                 <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
                   <div className="w-9 h-9 rounded-full bg-amber-400 flex items-center justify-center text-slate-900 font-extrabold text-sm flex-shrink-0">
                     {name[0]}

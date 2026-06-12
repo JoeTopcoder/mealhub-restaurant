@@ -3,8 +3,8 @@ import { redirect } from 'next/navigation'
 import { Heart, Users, Repeat, Star, TrendingUp } from 'lucide-react'
 
 export default async function LoyaltyPage() {
-  let stats = { total: 0, repeat: 0, members: 0, earned: 0, redeemed: 0 }
-  let tiers = { platinum: 0, gold: 0, silver: 0, bronze: 0 }
+  const stats = { total: 0, repeat: 0, members: 0, earned: 0, redeemed: 0 }
+  const tiers = { platinum: 0, gold: 0, silver: 0, bronze: 0 }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let transactions: any[] = []
 

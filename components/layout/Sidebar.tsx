@@ -19,24 +19,13 @@ const NAV = [
   { href: '/settings',   label: 'Settings',    icon: Settings },
 ]
 
-interface SidebarProps {
-  restaurantName?: string
-  restaurantImage?: string
+interface NavLinksProps {
+  pathname: string
+  setOpen: (v: boolean) => void
 }
 
-export default function Sidebar({ restaurantName, restaurantImage }: SidebarProps) {
-  const pathname = usePathname()
-  const router = useRouter()
-  const [open, setOpen] = useState(false)
-
-  async function handleSignOut() {
-    const supabase = createClient()
-    await supabase.auth.signOut()
-    router.push('/auth/login')
-    router.refresh()
-  }
-
-  const NavLinks = () => (
+function NavLinks({ pathname, setOpen }: NavLinksProps) {
+  return (
     <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
       {NAV.map(({ href, label, icon: Icon }) => {
         const active = pathname === href || (href !== '/dashboard' && pathname.startsWith(href))
@@ -58,8 +47,18 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
       })}
     </nav>
   )
+}
 
-  const SidebarInner = () => (
+interface SidebarInnerProps {
+  pathname: string
+  setOpen: (v: boolean) => void
+  restaurantName?: string
+  restaurantImage?: string
+  handleSignOut: () => void
+}
+
+function SidebarInner({ pathname, setOpen, restaurantName, restaurantImage, handleSignOut }: SidebarInnerProps) {
+  return (
     <div className="flex flex-col h-full">
       {/* Logo */}
       <div className="px-4 py-5 border-b border-gray-100">
@@ -91,7 +90,7 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
         </div>
       )}
 
-      <NavLinks />
+      <NavLinks pathname={pathname} setOpen={setOpen} />
 
       {/* Sign out */}
       <div className="px-3 py-4 border-t border-gray-100">
@@ -105,12 +104,36 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
       </div>
     </div>
   )
+}
+
+interface SidebarProps {
+  restaurantName?: string
+  restaurantImage?: string
+}
+
+export default function Sidebar({ restaurantName, restaurantImage }: SidebarProps) {
+  const pathname = usePathname()
+  const router = useRouter()
+  const [open, setOpen] = useState(false)
+
+  async function handleSignOut() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    router.push('/auth/login')
+    router.refresh()
+  }
 
   return (
     <>
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-60 bg-white border-r border-gray-100 fixed inset-y-0 left-0 z-30">
-        <SidebarInner />
+        <SidebarInner
+          pathname={pathname}
+          setOpen={setOpen}
+          restaurantName={restaurantName}
+          restaurantImage={restaurantImage}
+          handleSignOut={handleSignOut}
+        />
       </aside>
 
       {/* Mobile top bar */}
@@ -135,7 +158,13 @@ export default function Sidebar({ restaurantName, restaurantImage }: SidebarProp
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <SidebarInner />
+            <SidebarInner
+              pathname={pathname}
+              setOpen={setOpen}
+              restaurantName={restaurantName}
+              restaurantImage={restaurantImage}
+              handleSignOut={handleSignOut}
+            />
           </aside>
         </>
       )}
